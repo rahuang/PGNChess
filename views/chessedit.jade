@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1 Edit Chess Games
+    br
+    a(href='/chess') List Games
+    br
+    ul
+        each game, i in games
+            li 
+                a(href='/admin/edit/#{game._id}') ID: #{game._id}, White: #{game.white}, Black: #{game.black}  
+                br
+                form#formDeleteGame(name="deletegame",method="post",action="/admin/delete/#{game._id}")
+                    button#btnSubmit(type="submit") Delete Game
+            br

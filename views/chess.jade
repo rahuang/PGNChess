@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 Chess Games
+    ul
+        each game, i in games
+            li 
+                a(href='/chess/#{game._id}') ID: #{game._id}, White: #{game.white}, Black: #{game.black}
+    br
+    a(href='/admin/add') Add new game
+    br
+    a(href='/admin/edit') Edit existing game

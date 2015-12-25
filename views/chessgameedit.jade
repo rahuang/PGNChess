@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 Edit Chess Game #{id}
+    br
+    a(href='/admin/edit') List Edit Games
+    br
+    form#formEditGame(name="editgame",method="post",action="/admin/edit/#{id}")
+        textarea(name="gamedata", rows=20, cols=100).
+            #{game}
+        br
+        button#btnSubmit(type="submit") Update Game

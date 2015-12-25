@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 Chess Game #{id}
+    br
+    a(href='/chess') List Games
+    br
+    textarea(rows=20, cols=100).
+        #{game}

@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1 Add Chess Game
+    br
+    a(href='/chess') List Games
+    br
+    form#formAddGame(name="addgame",method="post",action="/admin/add")
+        textarea(name="gamedata", rows=20, cols=100)
+        br
+        button#btnSubmit(type="submit") Add Game
