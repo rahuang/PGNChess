@@ -49,7 +49,7 @@ Example of PGN Chess Game (read more: http://www.enpassant.dk/chess/palview/manu
     $ npm start
     ```  
 
-  * Now you can open up any web browser (preferably Chrome) and go to *http://localhost:3000/chess*. The server should be running properly and a list of all the chess game (empty if you haven't populated your Mongo database) will be displayed.
+  * Now you can open up any web browser (preferably Chrome) and go to http://localhost:3000/chess. The server should be running properly and a list of all the chess game (empty if you haven't populated your Mongo database) will be displayed.
 
 ### Common problems
 ###### Express Problems
