@@ -37,10 +37,11 @@ Example of PGN Chess Game (read more: http://www.enpassant.dk/chess/palview/manu
     ```
 
   * This will create a new directory in your project folder called node_modules. This will download and install all node modules needed to run the web application. Wait for all npm install to complete.
-  * Open another command prompt window and run mongod. *(Note: The app assumes that you have a MongoDB database called 'chess' and will be working with a collection called 'pgnchess'.)*
+  * Open another command prompt window and run mongod and set database path to the data folder in the repo. *(Note: The app assumes that you have a MongoDB database called 'chess' and will be working with a collection called 'pgnchess'.)*
 
     ```
-    $ mongod
+    $ cd path/to/repo
+    $ mongod --dbpath data
     ```  
 
   * Go back to your first command prompt window and now you can start up the Node.js server and run the app.
