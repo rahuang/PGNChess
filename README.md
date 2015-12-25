@@ -24,39 +24,52 @@ Example of PGN Chess Game (read more: http://www.enpassant.dk/chess/palview/manu
  * You will need MongoDB installed as well
    * Download and install MongoDB through this link and follow instructions https://www.mongodb.org/downloads#production
  * Git clone this repo locally
-    ```sh
+
+    ```
     $ git clone https://github.com/rahuang/PGNChess.git
     ```
+
   * Now that the repo is cloned and Node is installed, the npm package manager should be installed too. Change your directory to the project directory and install node modules. Follow these next steps:
-    ```sh
+
+    ```
     $ cd PGNChess
     $ npm install
     ```
+
   * This will create a new directory in your project folder called node_modules. This will download and install all node modules needed to run the web application. Wait for all npm install to complete.
   * Open another command prompt window and run mongod. *(Note: The app assumes that you have a MongoDB database called 'chess' and will be working with a collection called 'pgnchess'.)*
-    ```sh
+
+    ```
     $ mongod
     ```  
+
   * Go back to your first command prompt window and now you can start up the Node.js server and run the app.
-    ```sh
+
+    ```
     $ npm start
     ```  
+
   * Now you can open up any web browser (preferably Chrome) and go to *http://localhost:3000/chess*. The server should be running properly and a list of all the chess game (empty if you haven't populated your Mongo database) will be displayed.
 
 ### Common problems
 ###### Express Problems
   * If for some reason the server doesn't start up properly, it's probably because express wasn't installed properly. Follow these commands:
-    ```sh
+
+    ```
     $ npm install -g express-generator
     ```  
+
 ###### Generic Node Module Problems
   * If any problems occur with package.json or the node_modules make sure you have the right/current copy of the package.json file from the remote git repo.
   * Go to your directory in a command prompt. Delete the whole node_modules directory
-    ```sh
+
+    ```
     $ rm -rf node_modules
     ```  
+
   * Reinstall all the node modules
-    ```sh
+
+    ```
     $ npm install
     ```  
  
