@@ -1,12 +1,28 @@
 extends layout
 
 block content
-    h1 Chess Games
-    ul
-        each game, i in games
-            li 
-                a(href='/chess/#{game._id}') ID: #{game._id}, White: #{game.white}, Black: #{game.black}
-    br
-    a(href='/admin/add') Add new game
-    br
-    a(href='/admin/edit') Edit existing game
+	h1 Chess Games
+
+	#chat
+
+	ul
+		each game, i in games
+			li 
+				a(href='/chess/#{game._id}') ID: #{game._id}, White: #{game.white}, Black: #{game.black}
+	br
+	a(href='/admin/add') Add new game
+	br
+	a(href='/admin/edit') Edit existing game
+
+	script(src="http://code.jquery.com/jquery-latest.min.js")
+	script(src="/socket.io/socket.io.js")
+
+	script.
+		jQuery(function($){
+			var socket = io.connect();
+			var $chat = $('#chat');
+
+		socket.on('newgame', function(gamedata){
+			$("ul").append('<li>ID: '+gamedata._id +' White: '+gamedata.white+'</li>');
+		});	
+		});

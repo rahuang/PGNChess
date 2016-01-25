@@ -13,6 +13,42 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var server = require("http").createServer(app);
+var io = require("socket.io").listen(server);
+
+server.listen(3000);
+
+
+function convertPGNtoJSON(pgn){
+    var details = pgn.match(/\[(.*)\]/g);
+    var data = {};
+    for(var i = 0; i < details.length; i++){
+        var temp = details[i].replace(/(\[|\])/g, "");
+        var key = temp.substring(0, temp.indexOf(" ")).toLowerCase();
+        var value = temp.substring(temp.indexOf(" ")+1).replace(/(")/g, "");
+        data[key] = value;
+    }
+
+    var movestemp = pgn.split(/\d*\. /g);
+    var moves = [];
+    for(var i = 1; i < movestemp.length; i++){
+        var temp = movestemp[i].trim().split(" ");
+        moves.push(temp.join("$"));
+    }
+    data["moves"] = moves; 
+    // console.log(data);
+    // console.log("db.pgnchess.insert(" + JSON.stringify(data) + ");");
+    return data;
+}
+
+io.sockets.on('connection', function(socket){
+  socket.on('sendedit', function(gamedata){
+    io.sockets.emit('updateedit', gamedata);
+  });
+  socket.on('sendgame', function(gamedata){
+    io.sockets.emit('newgame', convertPGNtoJSON(gamedata));
+  });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

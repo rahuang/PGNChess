@@ -1,11 +1,26 @@
 extends layout
 
 block content
-    h1 Add Chess Game
-    br
-    a(href='/chess') List Games
-    br
-    form#formAddGame(name="addgame",method="post",action="/admin/add")
-        textarea(name="gamedata", rows=20, cols=100)
-        br
-        button#btnSubmit(type="submit") Add Game
+	h1 Add Chess Game
+	br
+	a(href='/chess') List Games
+	br
+	form#formAddGame(name="addgame",method="post",action="/admin/add")
+		textarea(id = "gamedata", name="gamedata", rows=20, cols=100)
+		br
+		button#btnSubmit(type="submit") Add Game
+
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js")
+	script(src="/socket.io/socket.io.js")
+
+	script.
+		jQuery(function($){
+			var socket = io.connect();
+			var $formGame = $('#formAddGame');
+			var $gameBox = $('#gamedata');
+
+			$formGame.submit(function(e){
+				socket.emit('sendgame', $gameBox.val());
+			});
+			
+		});

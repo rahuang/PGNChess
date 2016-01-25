@@ -1,9 +1,22 @@
 extends layout
 
 block content
-    h1 Chess Game #{id}
-    br
-    a(href='/chess') List Games
-    br
-    textarea(rows=20, cols=100).
-        #{game}
+	h1 Chess Game #{id}
+	br
+	a(href='/chess') List Games
+	br
+	textarea(rows=20, cols=100).
+		#{game}
+
+	script(src="http://code.jquery.com/jquery-latest.min.js")
+	script(src="/socket.io/socket.io.js")
+
+	script.
+		jQuery(function($){
+			var socket = io.connect();
+			var $chat = $('#chat');
+
+		socket.on('updateedit', function(gamedata){
+			$("textarea").val(gamedata);
+		});	
+		});
